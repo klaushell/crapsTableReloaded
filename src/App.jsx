@@ -27,6 +27,8 @@ function App() {
         name: `Player ${i + 1}`,
         dice: `${nDice}`,
         faces: `${nFaces}`,
+        score: "",
+        status: "",
       };
 
       tempList.push(newPlayer);
@@ -68,13 +70,16 @@ function App() {
 
         <button onClick={(e) => createPlayersList(e)}>READY</button>
       </form>
+
       <ul>
         {playersList.map((item) => (
           <li key="{item.id}">
             <header>{item.name}</header>
             <br />
 
-            {item.dice}
+            <button> Roll </button>
+
+            {item.score}
             <br />
             {item.faces}
             <br />
