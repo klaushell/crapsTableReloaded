@@ -5,16 +5,16 @@ import { useState } from "react";
 
 function App() {
   const [nPlayers, setNPlayers] = useState("");
-  const [player, setPlayer] = useState({});
   const [playersList, setPlayersList] = useState([]);
   const [nDice, setNDice] = useState("");
   const [nFaces, setNFaces] = useState("");
   const tempList = [];
 
-  const clearPlayers = (e) => {
+  const resetBoard = (e) => {
     e.preventDefault();
-    console.log({ value: e.target.value });
     setPlayersList([]);
+    setNDice("");
+    setNFaces("");
   };
 
   const createPlayersList = (e) => {
@@ -25,13 +25,12 @@ function App() {
       const newPlayer = {
         id: `${i + 1}`,
         name: `Player ${i + 1}`,
+        dice: `${nDice}`,
+        faces: `${nFaces}`,
       };
 
       tempList.push(newPlayer);
     }
-
-    console.log(tempList);
-    console.log(playersList);
     setPlayersList(tempList);
   };
 
@@ -45,7 +44,8 @@ function App() {
           placeholder="How many players?"
           onChange={(e) => {
             setNPlayers(e.target.value);
-            clearPlayers(e);
+            resetBoard(e);
+            console.log(playersList);
           }}
         />
         <br />
@@ -68,6 +68,19 @@ function App() {
 
         <button onClick={(e) => createPlayersList(e)}>READY</button>
       </form>
+      <ul>
+        {playersList.map((item) => (
+          <li key="{item.id}">
+            <header>{item.name}</header>
+            <br />
+
+            {item.dice}
+            <br />
+            {item.faces}
+            <br />
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
