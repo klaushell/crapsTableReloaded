@@ -9,15 +9,16 @@ function App() {
   const [playersList, setPlayersList] = useState([]);
   const [nDice, setNDice] = useState("");
   const [nFaces, setNFaces] = useState("");
+  const tempList = [];
 
-  const handlePlayers = (e) => {
+  const clearPlayers = (e) => {
     e.preventDefault();
     console.log({ value: e.target.value });
+    setPlayersList([]);
   };
 
   const createPlayersList = (e) => {
     e.preventDefault();
-    const tempList = [];
 
     var i;
     for (i = 0; i < nPlayers; i++) {
@@ -27,11 +28,11 @@ function App() {
       };
 
       tempList.push(newPlayer);
-      setPlayersList([...playersList, newPlayer]);
     }
-    // setPlayersList(tempList);
+
     console.log(tempList);
     console.log(playersList);
+    setPlayersList(tempList);
   };
 
   return (
@@ -44,7 +45,7 @@ function App() {
           placeholder="How many players?"
           onChange={(e) => {
             setNPlayers(e.target.value);
-            handlePlayers(e);
+            clearPlayers(e);
           }}
         />
         <br />
