@@ -27,8 +27,10 @@ function App() {
       };
 
       tempList.push(newPlayer);
+      setPlayersList([...playersList, newPlayer]);
     }
-    setPlayersList([tempList]);
+    // setPlayersList(tempList);
+    console.log(tempList);
     console.log(playersList);
   };
 
