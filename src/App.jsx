@@ -10,21 +10,6 @@ function App() {
   const [nDice, setNDice] = useState("");
   const [nFaces, setNFaces] = useState("");
 
-  // const validation = (e) => {
-  //   e.preventDefault();
-
-  //   var i;
-  //   for (i = 0; i < nPlayers; i++) {
-  //     const newPlayer = {
-  //       item: `${i + 1}`,
-  //       name: `Player ${i + 1}`,
-  //     };
-  //     setPlayer(newPlayer);
-  //     setPlayersList([...playersList, player]);
-  //   }
-  //   console.log(playersList);
-  // };
-
   const handlePlayers = (e) => {
     e.preventDefault();
     console.log({ value: e.target.value });
@@ -43,7 +28,7 @@ function App() {
 
       tempList.push(newPlayer);
     }
-    setPlayersList(tempList);
+    setPlayersList([tempList]);
     console.log(playersList);
   };
 
