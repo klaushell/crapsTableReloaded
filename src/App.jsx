@@ -32,9 +32,9 @@ function App() {
     var faces = document.forms["boardsetup"]["facesNumber"].value;
 
     if (
-      (players == null || players == "",
-      dice == null || dice == "",
-      faces == null || faces == "")
+      (players === null || players === "",
+      dice === null || dice === "",
+      faces === null || faces === "")
     ) {
       alert("Please Fill All Required Field");
       return false;
@@ -80,6 +80,7 @@ function App() {
   const facesHandleChange = (e) => {
     setNFaces(e.target.value);
   };
+  const rollDice = () => {};
 
   return (
     <div className="App">
@@ -122,7 +123,7 @@ function App() {
               {playersList.map((item) => (
                 <li key={item.id}>
                   <h2>{item.name}</h2>
-                  <button> Roll </button>
+                  <button onClick={(e) => rollDice(e)}> Roll </button>
                   <br />
                 </li>
               ))}
@@ -134,7 +135,7 @@ function App() {
             {dice.map((item) => (
               <li key={item.id}>
                 <h2>{item.name}</h2>
-                <h2>{item.faces}</h2>
+                <h2 className="App-square">{item.faces}</h2>
                 <br />
               </li>
             ))}
