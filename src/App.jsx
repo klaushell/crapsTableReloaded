@@ -1,5 +1,5 @@
-// import Rolldice from "./components/Rolldice";
-// import "./App.css";
+import Rolldice from "./components/Rolldice";
+import "./App.css";
 
 import { useState } from "react";
 
@@ -70,22 +70,21 @@ function App() {
 
         <button onClick={(e) => createPlayersList(e)}>READY</button>
       </form>
-
-      <ul>
-        {playersList.map((item) => (
-          <li key="{item.id}">
-            <header>{item.name}</header>
-            <br />
-
-            <button> Roll </button>
-
-            {item.score}
-            <br />
-            {item.faces}
-            <br />
-          </li>
-        ))}
-      </ul>
+      <div className="App-row">
+        <div className="App-headerSec">
+          <ul>
+            {playersList.map((item) => (
+              <li key="{item.id}">
+                <h2>{item.name}</h2>
+                <br />
+                <button onclick={(e) => Rolldice()}> Roll </button>
+                <br />
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="App-headerSec"></div>
+      </div>
     </div>
   );
 }
