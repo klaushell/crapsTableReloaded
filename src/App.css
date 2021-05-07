@@ -20,7 +20,7 @@
   color: white;
 }
 
-.App-headerSec {
+.App-h2 {
   background-color: #45cbec;
 
   min-height: 200px;
@@ -66,4 +66,25 @@
   to {
     transform: rotate(360deg);
   }
+}
+.App-button {
+  margin-top: 20px;
+  box-sizing: border-box;
+  min-height: 30px;
+  min-width: 100px;
+  font-size: 15px;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+.App-box {
+  background-color: #45cbec;
+
+  min-height: 200px;
+  display: grid;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  font-size: calc(15px);
+  color: white;
+  min-width: 30vh;
 }

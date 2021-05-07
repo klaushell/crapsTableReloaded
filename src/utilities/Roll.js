@@ -1,6 +1,6 @@
 const diceDefault = 6;
 
-function Rolldice(faces, oldRoll) {
+function roll(faces, oldRoll) {
   if (!faces || faces < 0) {
     faces = diceDefault;
   }
@@ -13,5 +13,5 @@ function Rolldice(faces, oldRoll) {
 }
 
 module.exports = {
-  Rolldice,
+  roll,
 };

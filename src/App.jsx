@@ -1,4 +1,4 @@
-// import Rolldice from "./components/Rolldice";
+// import dice from "./utilities/Roll";
 import "./App.css";
 
 import { useState } from "react";
@@ -27,16 +27,9 @@ function App() {
 
   const validateForm = (e) => {
     e.preventDefault();
-    var players = document.forms["boardsetup"]["playersNumber"].value;
-    var dice = document.forms["boardsetup"]["diceNumber"].value;
-    var faces = document.forms["boardsetup"]["facesNumber"].value;
 
-    if (
-      (players === null || players === "",
-      dice === null || dice === "",
-      faces === null || faces === "")
-    ) {
-      alert("Please Fill All Required Field");
+    if (!nPlayers || !nDice || !nFaces) {
+      alert("Nah ah ah.... You missed some fields there didn't ya???");
       return false;
     }
     createPlayersList();
@@ -46,25 +39,22 @@ function App() {
     setRdyBtnStatus(!rdyBtnStatus);
     setRstBtnStatus(!rstBtnStatus);
 
-    var i;
-    for (i = 0; i < nPlayers; i++) {
-      const newPlayer = {
-        id: `${i + 1}`,
+    for (let i = 0; i < nPlayers; i++) {
+      tempList.push({
+        id: i + 1,
         name: `Player ${i + 1}`,
         score: "",
         status: "",
-      };
-      tempList.push(newPlayer);
+      });
     }
     setPlayersList(tempList);
 
-    for (i = 0; i < nDice; i++) {
-      const newDice = {
-        id: `${i + 1}`,
+    for (let i = 0; i < nDice; i++) {
+      tempDice.push({
+        id: i + 1,
         name: `Dice ${i + 1}`,
         faces: `${nFaces}`,
-      };
-      tempDice.push(newDice);
+      });
     }
     setDice(tempDice);
   };
@@ -111,26 +101,30 @@ function App() {
           />
           <br />
 
-          <button disabled={rdyBtnStatus} onClick={(e) => validateForm(e)}>
+          <button
+            className="App-button"
+            disabled={rdyBtnStatus}
+            onClick={(e) => validateForm(e)}
+          >
             READY
           </button>
         </form>
       </div>
       <div className="App-row">
-        <div className="App-headerSec">
+        <div className="App-h2">
           <form>
             <ul>
               {playersList.map((item) => (
                 <li key={item.id}>
-                  <h2>{item.name}</h2>
-                  <button onClick={(e) => rollDice(e)}> Roll </button>
+                  <h2 className="">{item.name}</h2>
+                  <button onClick={(e) => dice.roll(e)}> Roll </button>
                   <br />
                 </li>
               ))}
             </ul>
           </form>
         </div>
-        <div className="App-headerSec">
+        <div className="App-h2">
           <ul>
             {dice.map((item) => (
               <li key={item.id}>
@@ -143,7 +137,11 @@ function App() {
         </div>
       </div>
       <div>
-        <button disabled={rstBtnStatus} onClick={(e) => resetBoard(e)}>
+        <button
+          className="App-button"
+          disabled={rstBtnStatus}
+          onClick={(e) => resetBoard(e)}
+        >
           RESET
         </button>
       </div>
