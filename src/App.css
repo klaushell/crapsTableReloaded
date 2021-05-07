@@ -22,9 +22,9 @@
 
 .App-headerSec {
   background-color: #45cbec;
-  min-height: 5vh;
-  min-height: 300px;
-  display: flex;
+
+  min-height: 200px;
+  display: grid;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
@@ -32,17 +32,14 @@
   color: white;
   min-width: 30vh;
 }
+
 .App-row {
-  /* margin-top: 5vh; */
   background-color: #45cbec;
-  /* min-height: 5vh; */
+
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   justify-content: center;
-  /* font-size: calc(10px + 2vmin); */
-  /* color: white; */
-  /* min-width: 50vh; */
 }
 
 .App-link {
