@@ -10,6 +10,7 @@ function App() {
   const [dice, setDice] = useState([]);
   const [nFaces, setNFaces] = useState("");
   const [rdyBtnStatus, setRdyBtnStatus] = useState("");
+  const [rstBtnStatus, setRstBtnStatus] = useState("disabled");
   const tempList = [];
   const tempDice = [];
 
@@ -21,15 +22,20 @@ function App() {
     setNDice("");
     setNFaces("");
     setRdyBtnStatus(!rdyBtnStatus);
+    setRstBtnStatus(!rstBtnStatus);
   };
 
   const validateForm = (e) => {
     e.preventDefault();
-    var x = document.forms["boardsetup"]["playersNumber"].value;
-    var y = document.forms["boardsetup"]["diceNumber"].value;
-    var z = document.forms["boardsetup"]["facesNumber"].value;
+    var players = document.forms["boardsetup"]["playersNumber"].value;
+    var dice = document.forms["boardsetup"]["diceNumber"].value;
+    var faces = document.forms["boardsetup"]["facesNumber"].value;
 
-    if ((x == null || x == "", y == null || y == "", z == null || z == "")) {
+    if (
+      (players == null || players == "",
+      dice == null || dice == "",
+      faces == null || faces == "")
+    ) {
       alert("Please Fill All Required Field");
       return false;
     }
@@ -38,6 +44,8 @@ function App() {
 
   const createPlayersList = () => {
     setRdyBtnStatus(!rdyBtnStatus);
+    setRstBtnStatus(!rstBtnStatus);
+
     var i;
     for (i = 0; i < nPlayers; i++) {
       const newPlayer = {
@@ -134,7 +142,9 @@ function App() {
         </div>
       </div>
       <div>
-        <button onClick={(e) => resetBoard(e)}>RESET</button>
+        <button disabled={rstBtnStatus} onClick={(e) => resetBoard(e)}>
+          RESET
+        </button>
       </div>
     </div>
   );
