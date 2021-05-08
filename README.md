@@ -19,6 +19,8 @@ The gameplay is a simple turned based game. Scores are kept in the scoreboard.
 
 The coding language used for this project was JavaScript. React library was used to help manage states and be able to render multiple components dynamically. Mocha and chai were used to provide a testing envoirenment.
 
+- [Node JS](https://nodejs.org/): Version \*[JavaScript](https://developer.mozilla.org/es/docs/Web/JavaScript): Version ES6, ES7 \*[React](https://reactjs.org/): Version 17.0.2 \*[Mocha](https://mochajs.org/): Version 8.3.2 \*[Chai](https://chaijs.com): Version 4.3.4
+
 Hope you enjoy the app. This is my first one ever.
 
 Developer contact information: klaushellemann@gmail.com
