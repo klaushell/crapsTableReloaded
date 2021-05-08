@@ -22,7 +22,6 @@
 
 .App-h2 {
   background-color: #45cbec;
-  min-height: 200px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -48,11 +47,11 @@
 
 .App-row {
   background-color: #45cbec;
-
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   justify-content: center;
+  margin-bottom: 0vh;
 }
 
 .App-square {
@@ -61,6 +60,8 @@
   max-height: 50px;
   min-width: 50px;
   max-width: 50px;
+  margin-left: 12vh;
+  margin-top: 3vh;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -101,9 +102,8 @@
 }
 .App-box {
   background-color: #45cbec;
-
   min-height: 200px;
-  display: grid;
+  display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
