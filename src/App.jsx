@@ -1,5 +1,6 @@
 import dice, { roll } from "./utilities/Roll";
 import Player from "./components/Player";
+import Dice from "./components/Dice";
 import "./App.css";
 
 import { useState } from "react";
@@ -75,6 +76,10 @@ function App() {
     setNFaces(e.target.value);
   };
 
+  const bttnToggle = () => {
+    setRllBtnStatus(!rllBtnStatus);
+  };
+
   const finishTurn = (currentPlayer) => {
     // tirar dados
     // actualizar el board
@@ -84,10 +89,6 @@ function App() {
     } else {
       setTurn(turn + 1);
     }
-  };
-
-  const bttnToggle = () => {
-    setRllBtnStatus(!rllBtnStatus);
   };
 
   return (
@@ -147,11 +148,7 @@ function App() {
         <div className="App-h2">
           <ul>
             {dice.map((item) => (
-              <li key={item.id}>
-                <h2>{item.name}</h2>
-                <h2 className="App-square">{item.faces}</h2>
-                <br />
-              </li>
+              <Dice dice={item} />
             ))}
           </ul>
         </div>

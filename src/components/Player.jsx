@@ -1,4 +1,3 @@
-import dice from "../utilities/Roll";
 import React from "react";
 
 const Player = ({
@@ -16,7 +15,6 @@ const Player = ({
     bttnToggle();
   };
   const roll = (e) => {
-    // dice.roll(e);
     bttnToggle();
   };
 

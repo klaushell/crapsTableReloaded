@@ -1,10 +1,10 @@
 import React from "react";
 
-function Dice(props) {
+function Dice({ dice }) {
   return (
-    <li key={item.id}>
-      <h2>{item.name}</h2>
-      <h2 className="App-square">{item.faces}</h2>
+    <li key={dice.id}>
+      <h2>{dice.name}</h2>
+      <h2 className="App-square">{dice.faces}</h2>
       <br />
     </li>
   );
