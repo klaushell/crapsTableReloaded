@@ -22,7 +22,7 @@ const Player = ({
 
   return (
     <li key={player.id} type="none">
-      <h2 className="">{player.name}</h2>
+      <h2 >{player.name}</h2>
       <button className="App-button" disabled={rllBtnStatus} onClick={roll}>
         {" "}
         Roll{" "}

@@ -1,6 +1,7 @@
 import dice, { roll } from "./utilities/Roll";
 import Player from "./components/Player";
 import Dice from "./components/Dice";
+import Scoreboard from "./components/Scoreboard";
 import "./App.css";
 
 import { useState } from "react";
@@ -99,6 +100,7 @@ function App() {
     setNewRoll(nRoll);
     console.log(oldRoll, nRoll);
     setOldRoll(nRoll);
+    // setPlayersList({ score: nRoll });
 
     //add for cycle per dice
     //How to add/modify property to object in state (useState)?
@@ -134,7 +136,7 @@ function App() {
           <br />
 
           <button
-            className="App-button"
+            className="App-button2"
             disabled={rdyBtnStatus}
             onClick={(e) => validateForm(e)}
           >
@@ -159,15 +161,7 @@ function App() {
             </ul>
           </form>
           <form>
-            <ul>
-              {playersList.map((item) => (
-                <li type="none">
-                  <h3 className="">{item.name}</h3>
-                  <p>SCORE: {item.score}</p>
-                  <p>{item.status}</p>
-                </li>
-              ))}
-            </ul>
+            <Scoreboard players={playersList} />
           </form>
         </div>
         <div className="App-h2">
@@ -180,7 +174,7 @@ function App() {
       </div>
       <div>
         <button
-          className="App-button"
+          className="App-button2"
           disabled={rstBtnStatus}
           onClick={(e) => resetBoard(e)}
         >
