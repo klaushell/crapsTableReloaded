@@ -6,8 +6,9 @@ const Player = ({
   finishTurn,
   bttnToggle,
   rllBtnStatus,
+  rollDice,
 }) => {
-  if (player.id != currentTurn) {
+  if (player.id !== currentTurn) {
     return null;
   }
   const nextPlayer = (e) => {
@@ -16,10 +17,11 @@ const Player = ({
   };
   const roll = (e) => {
     bttnToggle();
+    rollDice();
   };
 
   return (
-    <li key={player.id}>
+    <li key={player.id} type="none">
       <h2 className="">{player.name}</h2>
       <button disabled={rllBtnStatus} onClick={roll}>
         {" "}

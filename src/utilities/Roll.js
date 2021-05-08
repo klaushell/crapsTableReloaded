@@ -1,15 +1,14 @@
 const diceDefault = 6;
 
 function roll(faces, oldRoll) {
-  if (!faces || faces < 0) {
+  if (!faces || faces < 1) {
     faces = diceDefault;
   }
   let newRoll = Math.floor(Math.random() * faces) + 1;
   if (newRoll === oldRoll) {
-    roll(faces, oldRoll);
-  } else {
-    return newRoll;
+    newRoll = roll(faces, newRoll);
   }
+  return newRoll;
 }
 
 module.exports = {

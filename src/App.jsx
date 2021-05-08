@@ -6,17 +6,19 @@ import "./App.css";
 import { useState } from "react";
 
 function App() {
-  const [nPlayers, setNPlayers] = useState("");
+  const [nPlayers, setNPlayers] = useState();
   const [playersList, setPlayersList] = useState([]);
-  const [nDice, setNDice] = useState("");
+  const [nDice, setNDice] = useState();
   const [dice, setDice] = useState([]);
-  const [nFaces, setNFaces] = useState("");
+  const [nFaces, setNFaces] = useState();
   const [rdyBtnStatus, setRdyBtnStatus] = useState("");
   const [rstBtnStatus, setRstBtnStatus] = useState("disabled");
   const [rllBtnStatus, setRllBtnStatus] = useState("");
   const tempList = [];
   const tempDice = [];
   const [turn, setTurn] = useState(1);
+  const [oldRoll, setOldRoll] = useState(0);
+  const [newRoll, setNewRoll] = useState(0);
 
   const resetBoard = (e) => {
     e.preventDefault();
@@ -27,6 +29,7 @@ function App() {
     setNFaces("");
     setRdyBtnStatus(!rdyBtnStatus);
     setRstBtnStatus(!rstBtnStatus);
+    setRllBtnStatus(!rstBtnStatus);
   };
 
   const validateForm = (e) => {
@@ -81,6 +84,8 @@ function App() {
   };
 
   const finishTurn = (currentPlayer) => {
+    // currentPlayer.value = roll.dice(nFaces);
+    // console.log(currentPlayer.value);
     // tirar dados
     // actualizar el board
 
@@ -89,6 +94,13 @@ function App() {
     } else {
       setTurn(turn + 1);
     }
+  };
+
+  const rollDice = () => {
+    const nRoll = roll(nFaces, oldRoll);
+    setNewRoll(nRoll);
+    console.log(oldRoll, nRoll);
+    setOldRoll(nRoll);
   };
 
   return (
@@ -140,6 +152,7 @@ function App() {
                   finishTurn={finishTurn}
                   bttnToggle={bttnToggle}
                   rllBtnStatus={rllBtnStatus}
+                  rollDice={rollDice}
                 />
               ))}
             </ul>
@@ -148,7 +161,7 @@ function App() {
         <div className="App-h2">
           <ul>
             {dice.map((item) => (
-              <Dice dice={item} />
+              <Dice dice={item} result={newRoll} />
             ))}
           </ul>
         </div>
