@@ -12,6 +12,7 @@ function App() {
   const [nFaces, setNFaces] = useState("");
   const [rdyBtnStatus, setRdyBtnStatus] = useState("");
   const [rstBtnStatus, setRstBtnStatus] = useState("disabled");
+  const [rllBtnStatus, setRllBtnStatus] = useState("");
   const tempList = [];
   const tempDice = [];
   const [turn, setTurn] = useState(1);
@@ -85,6 +86,10 @@ function App() {
     }
   };
 
+  const bttnToggle = () => {
+    setRllBtnStatus(!rllBtnStatus);
+  };
+
   return (
     <div className="App">
       <title>crapsTableReloaded</title>
@@ -132,12 +137,9 @@ function App() {
                   player={item}
                   currentTurn={turn}
                   finishTurn={finishTurn}
+                  bttnToggle={bttnToggle}
+                  rllBtnStatus={rllBtnStatus}
                 />
-                // <li key={item.id}>
-                //   <h2 className="">{item.name}</h2>
-                //   <button onClick={(e) => dice.roll(e)}> Roll </button>
-                //   <br />
-                // </li>
               ))}
             </ul>
           </form>
