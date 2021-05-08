@@ -23,11 +23,15 @@ const Player = ({
   return (
     <li key={player.id} type="none">
       <h2 className="">{player.name}</h2>
-      <button disabled={rllBtnStatus} onClick={roll}>
+      <button className="App-button" disabled={rllBtnStatus} onClick={roll}>
         {" "}
         Roll{" "}
       </button>
-      <button disabled={!rllBtnStatus} onClick={nextPlayer}>
+      <button
+        className="App-button"
+        disabled={!rllBtnStatus}
+        onClick={nextPlayer}
+      >
         {" "}
         NEXT{" "}
       </button>

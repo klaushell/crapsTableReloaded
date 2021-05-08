@@ -27,9 +27,10 @@ function App() {
     setNPlayers("");
     setNDice("");
     setNFaces("");
-    setRdyBtnStatus(!rdyBtnStatus);
-    setRstBtnStatus(!rstBtnStatus);
-    setRllBtnStatus(!rstBtnStatus);
+    setRdyBtnStatus("");
+    setRstBtnStatus("disabled");
+    setRllBtnStatus("");
+    setTurn(1);
   };
 
   const validateForm = (e) => {
@@ -51,7 +52,7 @@ function App() {
         id: i + 1,
         name: `Player ${i + 1}`,
         score: "",
-        status: "",
+        status: "...",
       });
     }
     setPlayersList(tempList);
@@ -84,9 +85,6 @@ function App() {
   };
 
   const finishTurn = (currentPlayer) => {
-    // currentPlayer.value = roll.dice(nFaces);
-    // console.log(currentPlayer.value);
-    // tirar dados
     // actualizar el board
 
     if (playersList.length === currentPlayer.id) {
@@ -101,6 +99,9 @@ function App() {
     setNewRoll(nRoll);
     console.log(oldRoll, nRoll);
     setOldRoll(nRoll);
+
+    //add for cycle per dice
+    //How to add/modify property to object in state (useState)?
   };
 
   return (
@@ -154,6 +155,17 @@ function App() {
                   rllBtnStatus={rllBtnStatus}
                   rollDice={rollDice}
                 />
+              ))}
+            </ul>
+          </form>
+          <form>
+            <ul>
+              {playersList.map((item) => (
+                <li type="none">
+                  <h3 className="">{item.name}</h3>
+                  <p>SCORE: {item.score}</p>
+                  <p>{item.status}</p>
+                </li>
               ))}
             </ul>
           </form>
