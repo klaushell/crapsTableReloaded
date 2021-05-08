@@ -1,4 +1,5 @@
-// import dice from "./utilities/Roll";
+import dice, { roll } from "./utilities/Roll";
+import Player from "./components/Player";
 import "./App.css";
 
 import { useState } from "react";
@@ -13,6 +14,7 @@ function App() {
   const [rstBtnStatus, setRstBtnStatus] = useState("disabled");
   const tempList = [];
   const tempDice = [];
+  const [turn, setTurn] = useState(1);
 
   const resetBoard = (e) => {
     e.preventDefault();
@@ -54,6 +56,7 @@ function App() {
         id: i + 1,
         name: `Dice ${i + 1}`,
         faces: `${nFaces}`,
+        value: 0,
       });
     }
     setDice(tempDice);
@@ -70,7 +73,17 @@ function App() {
   const facesHandleChange = (e) => {
     setNFaces(e.target.value);
   };
-  const rollDice = () => {};
+
+  const finishTurn = (currentPlayer) => {
+    // tirar dados
+    // actualizar el board
+
+    if (playersList.length === currentPlayer.id) {
+      setTurn(1);
+    } else {
+      setTurn(turn + 1);
+    }
+  };
 
   return (
     <div className="App">
@@ -115,11 +128,16 @@ function App() {
           <form>
             <ul>
               {playersList.map((item) => (
-                <li key={item.id}>
-                  <h2 className="">{item.name}</h2>
-                  <button onClick={(e) => dice.roll(e)}> Roll </button>
-                  <br />
-                </li>
+                <Player
+                  player={item}
+                  currentTurn={turn}
+                  finishTurn={finishTurn}
+                />
+                // <li key={item.id}>
+                //   <h2 className="">{item.name}</h2>
+                //   <button onClick={(e) => dice.roll(e)}> Roll </button>
+                //   <br />
+                // </li>
               ))}
             </ul>
           </form>

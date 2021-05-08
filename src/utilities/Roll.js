@@ -6,7 +6,7 @@ function roll(faces, oldRoll) {
   }
   let newRoll = Math.floor(Math.random() * faces) + 1;
   if (newRoll === oldRoll) {
-    Rolldice(faces, oldRoll);
+    roll(faces, oldRoll);
   } else {
     return newRoll;
   }

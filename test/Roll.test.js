@@ -1,8 +1,8 @@
 const { expect } = require("chai");
-const solutionFile = require("../src/utilities/Rolldice.js");
-const rolldice = solutionFile.Rolldice;
+const solutionFile = require("../src/utilities/Roll.js");
+const rolldice = solutionFile.roll;
 
-describe("Rolldice", function () {
+describe("Roll", function () {
   const scenarios = [
     { faces: 6, cycles: 100 },
     { faces: 4, cycles: 1000 },
@@ -14,9 +14,9 @@ describe("Rolldice", function () {
   ];
   scenarios.forEach((scenario) =>
     it(`Should not repeat same roll after ${scenario.cycles} rolls.`, function () {
-      for (i = 1; i < scenario.cycles; i++) {
-        const oldRoll = rolldice(scenario.faces);
-        const roll = rolldice(scenario.faces, oldRoll);
+      for (i = 0; i < scenario.cycles; i++) {
+        const oldRoll = rolldice(scenario.faces); // 5
+        const roll = rolldice(scenario.faces, oldRoll); // ???
         expect(roll).to.not.be.equal(oldRoll);
       }
     })
