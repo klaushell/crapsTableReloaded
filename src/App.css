@@ -11,7 +11,7 @@
 .App-header {
   background-color: #282c34;
 
-  min-height: 15vh;
+  min-height: 12vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -23,14 +23,14 @@
 .App-h2 {
   background-color: #45cbec;
   min-height: 200px;
-  display: grid;
+  display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
   font-size: calc(15px);
   color: white;
   min-width: 30vh;
-  margin-bottom: 30px;
+  margin-bottom: 1vh;
 }
 
 .App-h3 {
@@ -39,11 +39,11 @@
   display: grid;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: center;
+  justify-content: left;
   font-size: calc(15px);
   color: white;
   min-width: 30vh;
-  margin-bottom: 30px;
+  margin-bottom: 1vh;
 }
 
 .App-row {
@@ -91,6 +91,7 @@
 }
 .App-button2 {
   margin-top: 2vh;
+  margin-bottom: 2vh;
   box-sizing: border-box;
   min-height: 4vh;
   min-width: 12vh;

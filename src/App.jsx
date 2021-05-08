@@ -1,4 +1,4 @@
-import dice, { roll } from "./utilities/Roll";
+import { roll } from "./utilities/Roll";
 import Player from "./components/Player";
 import Dice from "./components/Dice";
 import Scoreboard from "./components/Scoreboard";
@@ -7,19 +7,16 @@ import "./App.css";
 import { useState } from "react";
 
 function App() {
-  const [nPlayers, setNPlayers] = useState();
+  const [nPlayers, setNPlayers] = useState("");
   const [playersList, setPlayersList] = useState([]);
-  const [nDice, setNDice] = useState();
+  const [nDice, setNDice] = useState("");
   const [dice, setDice] = useState([]);
-  const [nFaces, setNFaces] = useState();
+  const [nFaces, setNFaces] = useState("");
   const [rdyBtnStatus, setRdyBtnStatus] = useState("");
   const [rstBtnStatus, setRstBtnStatus] = useState("disabled");
   const [rllBtnStatus, setRllBtnStatus] = useState("");
-  const tempList = [];
-  const tempDice = [];
+
   const [turn, setTurn] = useState(1);
-  const [oldRoll, setOldRoll] = useState(0);
-  const [newRoll, setNewRoll] = useState(0);
 
   const resetBoard = (e) => {
     e.preventDefault();
@@ -49,24 +46,24 @@ function App() {
     setRstBtnStatus(!rstBtnStatus);
 
     for (let i = 0; i < nPlayers; i++) {
-      tempList.push({
+      playersList.push({
         id: i + 1,
         name: `Player ${i + 1}`,
-        score: "",
+        score: 0,
         status: "...",
       });
     }
-    setPlayersList(tempList);
+    setPlayersList(playersList);
 
     for (let i = 0; i < nDice; i++) {
-      tempDice.push({
+      dice.push({
         id: i + 1,
         name: `Dice ${i + 1}`,
         faces: `${nFaces}`,
         value: 0,
       });
     }
-    setDice(tempDice);
+    setDice(dice);
   };
 
   const playersHandleChange = (e) => {
@@ -86,24 +83,44 @@ function App() {
   };
 
   const finishTurn = (currentPlayer) => {
-    // actualizar el board
-
     if (playersList.length === currentPlayer.id) {
       setTurn(1);
     } else {
       setTurn(turn + 1);
     }
   };
+  const calculateAllRolls = () => {
+    let total = 0;
+    let oldRoll = 0;
+    for (let i = 0; i < nDice; i++) {
+      const rollResult = roll(nFaces, oldRoll);
+      oldRoll = rollResult;
+      dice[i].value = rollResult;
+      total = total + rollResult;
+    }
+    setDice(dice);
+    return total;
+  };
 
   const rollDice = () => {
-    const nRoll = roll(nFaces, oldRoll);
-    setNewRoll(nRoll);
-    console.log(oldRoll, nRoll);
-    setOldRoll(nRoll);
-    // setPlayersList({ score: nRoll });
+    const result = calculateAllRolls();
+    playersList[turn - 1].score = playersList[turn - 1].score + result;
 
-    //add for cycle per dice
-    //How to add/modify property to object in state (useState)?
+    calculateWinner(playersList);
+  };
+  const calculateWinner = (list) => {
+    let winner = null;
+    let winnerScore = 0;
+    list.forEach((player, i) => {
+      if (winner === null || winnerScore < player.score) {
+        winnerScore = player.score;
+        winner = i;
+      }
+      list[i].status = "Looser...";
+    });
+
+    list[winner].status = "WINNER!!!!!";
+    setPlayersList(list);
   };
 
   return (
@@ -150,6 +167,7 @@ function App() {
             <ul>
               {playersList.map((item) => (
                 <Player
+                  key={item.id}
                   player={item}
                   currentTurn={turn}
                   finishTurn={finishTurn}
@@ -160,14 +178,14 @@ function App() {
               ))}
             </ul>
           </form>
-          <form>
+          <form className="App-h3">
             <Scoreboard players={playersList} />
           </form>
         </div>
         <div className="App-h2">
           <ul>
             {dice.map((item) => (
-              <Dice dice={item} result={newRoll} />
+              <Dice key={item.id} dice={item} />
             ))}
           </ul>
         </div>
