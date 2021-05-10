@@ -16,6 +16,7 @@ const Player = ({
     bttnToggle();
   };
   const roll = (e) => {
+    e.preventDefault();
     bttnToggle();
     rollDice();
   };
