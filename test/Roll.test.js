@@ -4,7 +4,7 @@ const rolldice = solutionFile.roll;
 
 describe("Roll", function () {
   const scenarios = [
-    { faces: 6, cycles: 100 },
+    { faces: 6, cycles: 1000 },
     { faces: 4, cycles: 1000 },
     { faces: 8, cycles: 100 },
     { faces: 10, cycles: 300 },
